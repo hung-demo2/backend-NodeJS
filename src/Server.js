@@ -1,7 +1,11 @@
 const express = require('express'); // common js
 const path = require('path'); // common js
-const app = express()
-const port = 8080
+require('dotenv').config();
+const app = express();
+const port = process.env.PORT || 8888;
+// console.log('port', process.env.PORT);
+const hostName = process.env.HOST_NAME;
+// console.log('hostName', process.env.HOST_NAME);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
