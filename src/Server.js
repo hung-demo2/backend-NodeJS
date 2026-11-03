@@ -7,11 +7,16 @@ const port = process.env.PORT || 8888;
 const hostName = process.env.HOST_NAME;
 // console.log('hostName', process.env.HOST_NAME);
 
+// config template engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 
+// config static files :image , css, js
+app.use(express.static(path.join(__dirname, 'public')));
+
+// khai báo router
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World! & hello')
 })
 
 app.get('/abc', (req, res) => {
