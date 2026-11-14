@@ -2,16 +2,16 @@
 
 const expess = require('express');
 const router =expess.Router();
-
-
+const {getHomePage,getAbc,getEmail} = require('../controllers/homeController');
 
 // khai báo router
-router.get('/', (req, res) => {
-  res.send('Hello World! & hello')
-})
+// router.METHOD('/route', HANDLER)
 
-router.get('/abc', (req, res) => {
-  res.render('sample.ejs');
-})
+
+router.get('/',getHomePage);
+
+router.get('/abc', getAbc);
+
+router.get('/email', getEmail);
 
 module.exports = router;
