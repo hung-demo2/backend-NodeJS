@@ -1,27 +1,23 @@
 const express = require('express'); // common js
 const path = require('path'); // common js
 require('dotenv').config();
+const configViewEngine = require('./config/viewEgine');
 const app = express();
+const webRouter = require('./routes/web');
+
+
 const port = process.env.PORT || 8888;
 // console.log('port', process.env.PORT);
 const hostName = process.env.HOST_NAME;
 // console.log('hostName', process.env.HOST_NAME);
 
-// config template engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs')
 
-// config static files :image , css, js
-app.use(express.static(path.join(__dirname, 'public')));
+// config template engine
+configViewEngine(app);
 
 // khai báo router
-app.get('/', (req, res) => {
-  res.send('Hello World! & hello')
-})
-
-app.get('/abc', (req, res) => {
-  res.render('sample.ejs');
-})
+// chú ý về tiền tố để có thể truy cập đúng đường dẫn 
+app.use('/', webRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
