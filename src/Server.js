@@ -5,7 +5,7 @@ const configViewEngine = require('./config/viewEgine');
 const app = express();
 const webRouter = require('./routes/web');
 const mysql = require('mysql2');
-
+const connection = require('./config/database');
 const port = process.env.PORT || 8888;
 // console.log('port', process.env.PORT);
 const hostName = process.env.HOST_NAME;
@@ -20,21 +20,10 @@ configViewEngine(app);
 app.use('/', webRouter);
 
 // Test connect database
-const connection = mysql.createConnection({
-host :'localhost',
-port : 3307, // default port mysql 3306
-user : 'root', // default empty
-password : '123456',
-database : 'hoidanit',
-});
 
-connection.query(
-  'select * from Users ',
-   function(err, results, fields) {
-    console.log( "<<<<<RESULTS>>>>>",results); // results contains rows returned by server
-    console.log( "<<<<<FIELDS>>>>>",fields); // fields contains extra meta data about results, if available
-   }
-)
+
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
