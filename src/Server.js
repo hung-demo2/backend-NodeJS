@@ -14,7 +14,9 @@ const hostName = process.env.HOST_NAME;
 
 // config template engine
 configViewEngine(app);
-
+// config request body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // khai báo router
 // chú ý về tiền tố để có thể truy cập đúng đường dẫn 
 app.use('/', webRouter);
